@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--[if IE 7 ]>
+<html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>
+<html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>
+<html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>区块链数据列表</title>
+    <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen"/>
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/da-slider.css"/>
+    <!-- Owl Carousel Assets -->
+    <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!-- Font Awesome -->
+    <link href="font/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/Chh1.ico">
+</head>
+
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://mec.tongji.edu.cn/" target="_blank" class="navbar-brand logo"><b>同济大学区块链创新应用实验室</b></a>
+            </div>
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav" id="mainNav">
+                    <li><a th:href="@{/index}">返回首页</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div id="#top"></div>
+<section id="home">
+    <div class="banner-container">
+    </div>
+</section>
+
+<section id="team" class="page-section">
+    <div class="container">
+        <div class="heading text-center">
+            <h2>微博数据</h2>
+            <p>下列表格展示了数据库中准备上传区块链的微博具体信息，其中各个字段的含义为：</p>
+            <p><b>block_id：</b>对即将上传区块链的数据进行编号；&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;</p>
+            <p><b>text_id：</b>可唯一对应Mastodon社交网络中的一条微博；&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&nbsp;</p>
+            <p><b>text：</b>用户名、发布时间和微博原文的字符串组合；&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;</p>
+            <p><b>text_hash：</b>对上述组合的md5加密结果；&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&nbsp;</p>
+            <p><b>block_details：</b>若已成功上传区块链，单击“详情”即可查看此条数据在区块链中的详细信息。</p>
+        </div>
+        <div class="team-content">
+            <div class="with:80%">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>block_id</th>
+                        <th>text_id</th>
+                        <th>text</th>
+                        <th>text_hash</th>
+                        <th>block_details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <th scope="row" th:text="${userStat.index + 1}">1</th>
+                        <td th:text="${user.blockId}">1</td>
+                        <td th:text="${user.textId}">1</td>
+                        <td th:text="${user.text}">1</td>
+                        <td th:text="${user.textHash}">1</td>
+                        <td><a th:href="@{/show(id=${user.blockId})}" target="_blank">详情</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer no-margin-top">
+                <ul class="pagination pull-right no-margin">
+                    <li>
+                        <a th:href="'/list?pageNum=0'">首页</a>
+                    </li>
+                    <li th:if="${users.hasPrevious()}">
+                        <a th:href="'/list?pageNum=' + ${users.previousPageable().getPageNumber()}" th:text="上一页"></a>
+                    </li>
+                    <li th:each="pageNum:${#numbers.sequence(0, users.getTotalPages() - 1)}">
+                        <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum ne users.pageable.getPageNumber()}"></a>
+                        <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum eq users.pageable.getPageNumber()}" th:style="'font-weight:bold;background: #6faed9;'"></a>
+                    </li>
+                    <li th:if="${users.hasNext()}">
+                        <a th:href="'/list?pageNum=' + ${users.nextPageable().getPageNumber()}" th:text="下一页"></a>
+                    </li>
+                    <li>
+                        <a th:href="'/list?pageNum=' + ${users.getTotalPages() - 1}">尾页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="social text-center">
+            <a href="https://weibo.com/tongjiuniversity?is_all=1" target="_blank"><i class="fa fa-weibo"></i></a>
+            <a href="https://github.com/wuhan2020/wuhan2020" target="_blank"><i class="fa fa-rss"></i></a>
+            <a href="https://flapybooks-public-1257356257.file.myqcloud.com/samples/railstutorial6th-sample.pdf"
+               target="_blank"><i class="fa fa-book"></i></a>
+            <a href="https://docs.aws.amazon.com/zh_cn/cloud9/latest/user-guide/setup-student.html#setup-student-create-account-starter"
+               target="_blank"><i class="fa fa-cloud"></i></a>
+            <a href="https://github.com/Edward-21" target="_blank"><i class="fa fa-github"></i></a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</footer>
+
+<section class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">Copyright &copy; 2020. Company name All rights reserved.
+                Email: mastotest@outlook.com（Support by<a target="_blank" href="http://www.outlook.com/"> Outlook</a>）
+            </div>
+        </div>
+    </div>
+</section>
+<a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
+
+<!--[if lte IE 8]>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
+<script src="js/modernizr-latest.js"></script>
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/jquery.isotope.min.js" type="text/javascript"></script>
+<script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="js/jquery.nav.js" type="text/javascript"></script>
+<script src="js/jquery.cslider.js" type="text/javascript"></script>
+<script src="contact/jqBootstrapValidation.js"></script>
+<script src="contact/contact_me.js"></script>
+<script src="js/custom.js" type="text/javascript"></script>
+<script src="js/owl-carousel/owl.carousel.js"></script>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="icon" type="image/x-icon" href="/Chh1.ico">
+</head>
+<body class="container">
+<br/>
+<h1>用户列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>userName</th>
+            <th>passWord</th>
+            <th>email</th>
+            <th>nickName</th>
+            <th>regTime</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <th scope="row" th:text="${userStat.index + 1}">1</th>
+            <td th:text="${user.blockId}">neo</td>
+            <td th:text="${user.textId}">Otto</td>
+            <td th:text="${user.textHash}">6</td>
+            <td th:text="${user.text}">6</td>
+            <td th:text="${users.number}">6</td>
+            <td><a th:href="@{/toEdit(id=${user.blockId})}">edit</a></td>
+            <td><a th:href="@{/delete(id=${user.blockId})}">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>
+    </div>
+</div>
+
+<div class="modal-footer no-margin-top">
+    <ul class="pagination pull-right no-margin">
+
+        &lt;!&ndash; 首页 &ndash;&gt;
+        <li>
+            <a th:href="'/list?pageNum=0'">首页</a>
+        </li>
+
+        &lt;!&ndash; 上一页 &ndash;&gt;
+        <li th:if="${users.hasPrevious()}">
+            <a th:href="'/list?pageNum=' + ${users.previousPageable().getPageNumber()}" th:text="上一页"></a>
+        </li>
+
+        &lt;!&ndash; 中间页 &ndash;&gt;
+        <li th:each="pageNum:${#numbers.sequence(0, users.getTotalPages() - 1)}">
+            <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum ne users.pageable.getPageNumber()}"></a>
+            <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}" th:if="${pageNum eq users.pageable.getPageNumber()}" th:style="'font-weight:bold;background: #6faed9;'"></a>
+        </li>
+
+        &lt;!&ndash; 下一页 &ndash;&gt;
+        <li th:if="${users.hasNext()}">
+            <a th:href="'/list?pageNum=' + ${users.nextPageable().getPageNumber()}" th:text="下一页"></a>
+        </li>
+
+        &lt;!&ndash; 尾页 &ndash;&gt;
+        <li>
+            <a th:href="'/list?pageNum=' + ${users.getTotalPages() - 1}">尾页</a>
+        </li>
+
+    </ul>
+</div>
+
+</body>
+</html>-->

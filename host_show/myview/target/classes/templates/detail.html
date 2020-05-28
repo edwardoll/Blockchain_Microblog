@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--[if IE 7 ]>
+<html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>
+<html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>
+<html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>区块链详细信息</title>
+    <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen"/>
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/da-slider.css"/>
+    <!-- Owl Carousel Assets -->
+    <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!-- Font Awesome -->
+    <link href="font/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/Chh10.ico">
+</head>
+
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="https://mec.tongji.edu.cn/" target="_blank" class="navbar-brand logo"><b>同济大学区块链创新应用实验室</b></a>
+            </div>
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav" id="mainNav">
+                    <li><a th:href="@{/index}">返回首页</a></li>
+                    <li><a th:href="@{/list}">返回数据库展示页</a></li>
+                    <li><a href="http://explorer-941.symboldev.network/" target="_blank">Symbol浏览器</a></li>
+                    <li><a href="http://ec2-34-227-27-237.compute-1.amazonaws.com:5001/webui/" target="_blank">IPFS浏览器</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div id="#top"></div>
+<section id="home">
+    <div class="banner-container">
+    </div>
+</section>
+
+<section id="contactUs" class="page-section">
+    <div class="container">
+        <div class="row">
+            <div class="heading text-center">
+                <h2>区块数据</h2>
+                <p>下列表格展示了已上传区块链的数据在所对应区块中的具体信息。</p>
+                <p>单击上方Symbol浏览器选项卡，用户可根据本页面提供的详细信息前往NEM区块链Symbol测试网配套的浏览器查看更多内容！</p>
+                <p>单击上方IPFS浏览器选项卡，用户可根据本页面提供的详细信息前往本站搭建的IPFS节点查看更多内容！</p>
+            </div>
+        </div>
+        <div class="row mrgn30">
+            <div class="col-sm-12 col-md-8">
+                <p style="font-size:25px;color: #FFFFFF">block_id：对应微博数据表中的“block_id”</p>
+                <div class="heading">
+                    <p style="font-size:30px;padding:20px 0 0 0;text-align:left;color: #000000;line-height: 35px" th:text="${BlockId}">1</p>
+                </div>
+                <p style="font-size:25px;color: #FFFFFF">block_time：上传区块链的时间</p>
+                <div class="heading">
+                    <p style="font-size:30px;padding:20px 0 0 0;text-align:left;color: #000000;line-height: 35px" th:text="${BlockTime}">1</p>
+                </div>
+                <p style="font-size:25px;color: #FFFFFF">block_high：对应区块的块高</p>
+                <div class="heading text-center">
+                    <p style="font-size:30px;padding:20px 0 0 0;text-align:left;color: #000000;line-height: 35px" th:text="${BlockHigh}">1</p>
+                </div>
+                <p style="font-size:25px;color: #FFFFFF">block_hash：对应区块交易的哈希值</p>
+                <div class="heading text-center">
+                    <p style="font-size:30px;padding:20px 0 0 0;text-align:left;color: #000000;line-height: 35px" th:text="${BlockHash}">1</p>
+                </div>
+                <p style="font-size:25px;color: #FFFFFF">block_text：保存在区块交易中的文字信息</p>
+                <div class="heading text-center">
+                    <p style="font-size:30px;padding:20px 0 0 0;text-align:left;color: #000000;line-height: 35px" th:text="${BlockText}">1</p>
+                </div>
+                <p style="font-size:25px;color: #FFFFFF">block_ipfs：区块信息在星际文件系统中的哈希值</p>
+                <div class="heading text-center">
+                    <p style="font-size:30px;padding:20px 0 0 0;text-align:left;color: #000000;line-height: 35px" th:text="${BlockIpfs}">1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!---<section class="maps">
+	<iframe src="http://maps.google.com/maps?f=q&t=m&z=15&ll=-7.269152,112.733127&output=embed" width="100%" height="250" frameborder="0"></iframe>
+</section>--->
+<footer>
+    <div class="container">
+        <div class="social text-center">
+            <a href="https://weibo.com/tongjiuniversity?is_all=1" target="_blank"><i class="fa fa-weibo"></i></a>
+            <a href="https://github.com/wuhan2020/wuhan2020" target="_blank"><i class="fa fa-rss"></i></a>
+            <a href="https://flapybooks-public-1257356257.file.myqcloud.com/samples/railstutorial6th-sample.pdf"
+               target="_blank"><i class="fa fa-book"></i></a>
+            <a href="https://docs.aws.amazon.com/zh_cn/cloud9/latest/user-guide/setup-student.html#setup-student-create-account-starter"
+               target="_blank"><i class="fa fa-cloud"></i></a>
+            <a href="https://github.com/Edward-21" target="_blank"><i class="fa fa-github"></i></a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</footer>
+
+<section class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">Copyright &copy; 2020. Company name All rights reserved.
+                Email: mastotest@outlook.com（Support by<a target="_blank" href="http://www.outlook.com/"> Outlook</a>）
+            </div>
+        </div>
+    </div>
+</section>
+<a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
+
+<!--[if lte IE 8]>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
+<script src="js/modernizr-latest.js"></script>
+<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/jquery.isotope.min.js" type="text/javascript"></script>
+<script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="js/jquery.nav.js" type="text/javascript"></script>
+<script src="js/jquery.cslider.js" type="text/javascript"></script>
+<script src="contact/jqBootstrapValidation.js"></script>
+<script src="contact/contact_me.js"></script>
+<script src="js/custom.js" type="text/javascript"></script>
+<script src="js/owl-carousel/owl.carousel.js"></script>
+</body>
+</html>
